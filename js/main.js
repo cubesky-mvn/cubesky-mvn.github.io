@@ -78,6 +78,16 @@ const dataStore = [{
     type: 'jar',
     license: 'Apache 2.0',
     version: ['1.0']
+}, {
+    project: 'WordAnalytics',
+    group: 'party.liyin',
+    name: 'wordanalytics',
+    url: 'https://github.com/cubesky/WordAnalytics',
+    description: 'Document Index and Full text Search Library',
+    source: 'Github',
+    type: 'jar',
+    license: 'Apache 2.0',
+    version: ['1.0']
 }]
 var licenseData = {
   'GPLv3': {
