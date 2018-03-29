@@ -3,13 +3,14 @@
   <groupId>party.liyin</groupId>
   <artifactId>easywifip2p</artifactId>
   <versioning>
-    <release>2.2</release>
+    <release>2.3</release>
     <versions>
       <version>1.0</version>
       <version>2.0</version>
       <version>2.1</version>
       <version>2.2</version>
+      <version>2.3</version>
     </versions>
-    <lastUpdated>20180224180941</lastUpdated>
+    <lastUpdated>20180225113351</lastUpdated>
   </versioning>
 </metadata>

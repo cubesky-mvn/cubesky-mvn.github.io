@@ -7,7 +7,7 @@ const dataStore = [{
     source: 'Github',
     type: 'jar',
     license: 'GPLv3',
-    version: ['1.0', '2.0', '2.1', '3.0']
+    version: ['1.0', '2.0', '2.1', '3.0', '4.0']
 }, {
     project: 'Gobang Board',
     group: 'party.liyin',
@@ -67,6 +67,16 @@ const dataStore = [{
     source: 'Github',
     type: 'jar',
     license: 'LGPLv3',
+    version: ['1.0']
+}, {
+    project: 'SameSentence',
+    group: 'party.liyin',
+    name: 'samesentence',
+    url: 'https://github.com/cubesky/SameSentence',
+    description: 'Sentence Analysis Library',
+    source: 'Github',
+    type: 'jar',
+    license: 'Apache 2.0',
     version: ['1.0']
 }]
 var licenseData = {
