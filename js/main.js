@@ -88,6 +88,16 @@ const dataStore = [{
     type: 'jar',
     license: 'Apache 2.0',
     version: ['1.0']
+}, {
+    project: 'Kefjs',
+    group: 'party.liyin',
+    name: 'kefjs',
+    url: 'https://github.com/cubesky/Kefjs',
+    description: 'A Kotlin/JS Wrapper for ef.js',
+    source: 'Github',
+    type: 'jar',
+    license: 'MIT',
+    version: ['0.7.1']
 }]
 var licenseData = {
   'GPLv3': {
