@@ -98,6 +98,16 @@ const dataStore = [{
     type: 'jar',
     license: 'MIT',
     version: ['0.7.1']
+}, {
+    project: 'KPagejs',
+    group: 'party.liyin',
+    name: 'kpagejs',
+    url: 'https://github.com/cubesky/KPagejs',
+    description: 'A Kotlin/JS Wrapper for page.js',
+    source: 'Github',
+    type: 'jar',
+    license: 'MIT',
+    version: ['1.8.6']
 }]
 var licenseData = {
   'GPLv3': {
