@@ -107,7 +107,7 @@ const dataStore = [{
     source: 'Github',
     type: 'jar',
     license: 'MIT',
-    version: ['1.8.6', '1.8.6-K2', '1.8.6-K3']
+    version: ['1.8.6', '1.8.6-K2', '1.8.6-K3', '1.8.6-K4']
 }]
 var licenseData = {
   'GPLv3': {
