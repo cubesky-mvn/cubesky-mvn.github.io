@@ -97,7 +97,7 @@ const dataStore = [{
     source: 'Github',
     type: 'jar',
     license: 'MIT',
-    version: ['0.7.1', '0.7.1-K2']
+    version: ['0.7.1', '0.7.1-K2', '0.7.1-K3']
 }, {
     project: 'KPagejs',
     group: 'party.liyin',
