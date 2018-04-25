@@ -3,7 +3,7 @@
   <groupId>party.liyin</groupId>
   <artifactId>kefjs</artifactId>
   <versioning>
-    <release>0.7.2-K4</release>
+    <release>0.7.2-K5</release>
     <versions>
       <version>0.7.1</version>
       <version>0.7.1-K2</version>
@@ -17,7 +17,8 @@
       <version>0.7.2-K2</version>
       <version>0.7.2-K3</version>
       <version>0.7.2-K4</version>
+      <version>0.7.2-K5</version>
     </versions>
-    <lastUpdated>20180425020238</lastUpdated>
+    <lastUpdated>20180425031801</lastUpdated>
   </versioning>
 </metadata>
