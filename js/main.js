@@ -27,7 +27,7 @@ const dataStore = [{
     source: 'Github',
     type: 'jar',
     license: 'Apache 2.0',
-    version: ['0.1']
+    version: ['0.1', '0.2']
 }, {
     project: 'Easy Wifi P2P',
     group: 'party.liyin',
