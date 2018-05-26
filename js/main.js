@@ -87,7 +87,7 @@ const dataStore = [{
     source: 'Github',
     type: 'jar',
     license: 'Apache 2.0',
-    version: ['1.0']
+    version: ['1.0', '2.0']
 }, {
     project: 'Kefjs',
     group: 'party.liyin',
