@@ -111,6 +111,16 @@ const dataStore = [{
     type: 'jar',
     license: 'MIT',
     version: ['1.8.6', '1.8.6-K2', '1.8.6-K3', '1.8.6-K4', '1.8.6-K5']
+}, {
+    project: 'AutoRecyclerAdapter',
+    group: 'party.liyin',
+    name: 'skyrecycleradapter',
+    url: 'https://github.com/cubesky/AutoRecyclerAdapter',
+    description: 'An ugly and easiler way to control RecyclerView',
+    source: 'Github',
+    type: 'aar',
+    license: 'MIT',
+    version: ['0.1']
 }]
 var licenseData = {
   'GPLv3': {
