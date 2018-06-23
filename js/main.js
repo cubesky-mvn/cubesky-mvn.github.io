@@ -7,7 +7,7 @@ const dataStore = [{
     source: 'Github',
     type: 'jar',
     license: 'GPLv3',
-    version: ['1.0', '2.0', '2.1', '3.0', '4.0', '5.0', '5.1', '6.0', '6.1', '7.0', '8.0']
+    version: ['1.0', '2.0', '2.1', '3.0', '4.0', '5.0', '5.1', '6.0', '6.1', '7.0', '8.0', '8.1']
 }, {
     project: 'Gobang Board',
     group: 'party.liyin',
