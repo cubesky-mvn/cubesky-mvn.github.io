@@ -37,7 +37,7 @@ const dataStore = [{
     source: 'Github',
     type: 'aar',
     license: 'MIT',
-    version: ['1.0', '2.0','2.1','2.2']
+    version: ['1.0', '2.0','2.1','2.2','2.3']
 }, {
     project: 'Multicast Helper',
     group: 'party.liyin',
