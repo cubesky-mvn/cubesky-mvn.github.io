@@ -47,7 +47,7 @@ const dataStore = [{
     source: 'Github',
     type: 'jar',
     license: 'MIT',
-    version: ['1.0']
+    version: ['1.0', '1.1']
 }, {
     project: 'Easy Android BLE',
     group: 'party.liyin',
