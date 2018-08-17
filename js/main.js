@@ -278,11 +278,23 @@ const ef_donate_template = ef.t`
   >td
     .{{amount}}￥
 `
+const ef_donate_loading_template = ef.t`
+>tr
+  >td
+    #colspan = 2
+    .Loading donate list...
+`
 const ef_donate_empty_template = ef.t`
 >tr
   >td
     #colspan = 2
     .Donate list is empty...
+`
+const ef_donate_error_template = ef.t`
+>tr
+  >td
+    #colspan = 2
+    .An error occurred when fetching donate list.
 `
 const maven_repo = `<repository>
   <id>cubesky-mvn</id>
@@ -395,6 +407,7 @@ mdui.mutation()
 
 const donate_list = new ef_donate_table_template()
 donate_list.$mount({target: $$('#donate-list')[0]})
+donate_list.donatelist.push(new ef_donate_loading_template())
 const params_donate_list = new URLSearchParams()
 params_donate_list.append('limit', 300)
 params_donate_list.append('order_type', 1)
@@ -404,6 +417,7 @@ axios.post('https://accounts.extstars.com/api/v2/donation/pull', params_donate_l
     'Content-Type': 'application/x-www-form-urlencoded'
   }
 }).then(function(result) {
+  donate_list.donatelist.empty()
   if (result.data.code === 100) {
     for (donate_single in result.data.data) {
       donate_list.donatelist.push(new ef_donate_template({
@@ -417,9 +431,11 @@ axios.post('https://accounts.extstars.com/api/v2/donation/pull', params_donate_l
       donate_list.donatelist.push(new ef_donate_empty_template())
     }
     mdui.mutation()
+  } else {
+    donate_list.donatelist.push(new ef_donate_error_template())
   }
 }).catch(function(error){
-  console.error(error)
+  donate_list.donatelist.push(new ef_donate_error_template())
 })
 
 function copyManually(data) {
