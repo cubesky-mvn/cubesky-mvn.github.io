@@ -432,7 +432,9 @@ axios.post('https://accounts.extstars.com/api/v2/donation/pull', params_donate_l
     }
     mdui.mutation()
   } else {
+    donate_list.donatelist.empty()
     donate_list.donatelist.push(new ef_donate_error_template())
+    mdui.mutation()
   }
 }).catch(function(error){
   donate_list.donatelist.push(new ef_donate_error_template())
