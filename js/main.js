@@ -425,3 +425,37 @@ window.addEventListener('scroll', function(e) {
   }
   lastscroll = window.scrollY
 })
+
+function donate() {
+  axios.post('https://accounts.extstars.com/api/v2/donation/create', JSON.stringify({
+    device_id: 'web',
+    user_name: document.getElementById('donate_name').value,
+    amount: document.getElementById('donate_amount').value,
+    pay_method: document.getElementById('donate_method').value
+  }), {
+    headers: {
+      'AppId': '25',
+      'Content-Type': 'application/json'
+    }
+  }).then(function(result) {
+    if (result.data.code === 100) {
+      mdui.snackbar('Donation order create success.')
+      if(data.data.link != '') {
+        window.setTimeout(function(){ location.href=data.data.link }, 1800)
+      } else {
+        document.getElementById().innerHTML ='<p>' + data.data.tips + 'Please scan this qrcode to donate. </p><div id="qrcode"></div>'
+        new QRCode(document.getElementById('qrcode'), result.data.data.qrcode)
+      }
+    } else {
+      mdui.snackbar({message: 'Input Error.', buttonText: 'Dismiss'})
+    }
+  }).catch(function(error) {
+    console.log(error)
+    mdui.snackbar({message: 'An error has occurred.', buttonText: 'Dismiss'})
+  })
+}
+
+var amount = (new URL(window.location.href)).searchParams.get('amount')
+if(amount != null) {
+    mdui.snackbar({message: 'Thank you for your donate!', buttonText: 'Dismiss'})
+}

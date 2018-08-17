@@ -37,6 +37,7 @@
         <a href="#tab-home" class="mdui-ripple mdui-ripple-white">Home</a>
         <a href="#tab-config" class="mdui-ripple mdui-ripple-white">Config</a>
         <a href="#tab-library" class="mdui-ripple mdui-ripple-white">Library</a>
+        <a href="#tab-donate" class="mdui-ripple mdui-ripple-white">Donate</a>
       </div>
     </div>
     <div id="tab-home">
@@ -148,6 +149,40 @@ dependencies {<span class="mdui-text-color-deep-orange">
         </div>
       </div>
     </div>
+    <div id="tab-donate">
+      <div class="mdui-container mdui-m-b-2 mdui-appbar-with-toolbar mdui-appbar-with-tab">
+        <h1>Donate CubeSky</h1>
+        <div>
+          If you wish to donate me. You can donate here. Thank you.
+        </div>
+        <div>
+          <div class="mdui-textfield mdui-textfield-floating-label">
+            <label class="mdui-textfield-label">Your Name</label>
+            <input class="mdui-textfield-input" type="text" id="donate_name"/>
+          </div>
+          <div class="mdui-textfield mdui-textfield-floating-label">
+            <label class="mdui-textfield-label">Amount</label>
+            <input class="mdui-textfield-input" type="text" id="donate_amount"/>
+          </div>
+          <div class="mdui-m-t-1">
+            <select class="mdui-select" id="donate_method" mdui-select>
+              <option value="alipay">AliPay (支付宝)</option>
+              <option value="wechat">WeChat Qrcode (微信扫码支付)</option>
+              <option value="wechat_h5">WeChat App (微信唤起支付，请在手机浏览器使用)</option>
+              <option value="qqpay">QQ Pay (QQ 扫码支付)</option>
+              <option value="paypal">PayPal</option>
+            </select>
+          </div>
+          <div class="mdui-m-t-1">
+            <div class="mdui-clearfix">
+              <div class="mdui-float-right">
+                <button onclick="donate()" onsubmit="return false" class="mdui-btn mdui-color-theme-accent mdui-btn-raised mdui-ripple">Donate</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <button class="mdui-fab mdui-fab-fixed mdui-ripple mdui-color-theme-accent mdui-fab-hide" id="back-to-top" onclick="toTop()"><i class="mdui-icon material-icons">arrow_upward</i></button>
     <div class="mdui-dialog" id="copy-dialog">
       <div class="mdui-dialog-content" id="dialog-content">
@@ -166,6 +201,8 @@ dependencies {<span class="mdui-text-color-deep-orange">
     <script src="js/mdui.min.js"></script>
     <script src="js/ef.min.js"></script>
     <script src="js/clipboard.min.js"></script>
+    <script src="js/qrcode.js"></script>
+    <script src="js/axios.min.js"></script>
     <script src="js/main.js"></script>
   </body>
 </html>
