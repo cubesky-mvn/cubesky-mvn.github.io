@@ -267,6 +267,23 @@ const ef_template_version = ef.t`
   #value = {{version}}
   .{{version}}
 `
+const ef_donate_table_template = ef.t`
+>tbody
+  +donatelist
+`
+const ef_donate_template = ef.t`
+>tr
+  >td
+    .{{name}}
+  >td
+    .{{amount}}￥
+`
+const ef_donate_empty_template = ef.t`
+>tr
+  >td
+    #colspan = 2
+    .Donate list is empty...
+`
 const maven_repo = `<repository>
   <id>cubesky-mvn</id>
   <name>CubeSkyMVN</name>
@@ -376,6 +393,35 @@ for (var i = 0; i < dataStore.length; i++) {
 
 mdui.mutation()
 
+const donate_list = new ef_donate_table_template()
+donate_list.$mount({target: $$('#donate-list')[0]})
+const params_donate_list = new URLSearchParams()
+params_donate_list.append('limit', 300)
+params_donate_list.append('order_type', 1)
+axios.post('https://accounts.extstars.com/api/v2/donation/pull', params_donate_list, {
+  headers: {
+    'AppId': '26',
+    'Content-Type': 'application/x-www-form-urlencoded'
+  }
+}).then(function(result) {
+  if (result.data.code === 100) {
+    for (donate_single in result.data.data) {
+      donate_list.donatelist.push(new ef_donate_template({
+        $data: {
+          name: result.data.data[donate_single].user_name,
+          amount: result.data.data[donate_single].amount
+        }
+      }))
+    }
+    if (donate_list.donatelist.length === 0) {
+      donate_list.donatelist.push(new ef_donate_empty_template())
+    }
+    mdui.mutation()
+  }
+}).catch(function(error){
+  console.error(error)
+})
+
 function copyManually(data) {
     copyDialog.open()
     $$('#manual-copy').val(data)
@@ -442,7 +488,7 @@ function donate() {
   params.append('pay_method', document.getElementById('donate_method').value)
   axios.post('https://accounts.extstars.com/api/v2/donation/create', params, {
     headers: {
-      'AppId': '25',
+      'AppId': '26',
       'Content-Type': 'application/x-www-form-urlencoded'
     }
   }).then(function(result) {
