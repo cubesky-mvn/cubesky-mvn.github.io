@@ -614,5 +614,5 @@ function donateSuccess() {
 
 var amount = (new URL(window.location.href)).searchParams.get('amount')
 if(amount != null) {
-    mdui.snackbar({message: 'Thank you for your donate!', buttonText: 'Dismiss'})
+    mdui.snackbar({message: 'Thank you for your donation!', buttonText: 'Dismiss'})
 }
