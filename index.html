@@ -180,9 +180,6 @@ dependencies {<span class="mdui-text-color-deep-orange">
               </div>
             </div>
           </div>
-          <div class="mdui-m-t-1">
-            <div id="donate_qrcode"></div>
-          </div>
           <div class="mdui-m-t-2">
             <div class="mdui-divider"></div>
           </div>
@@ -212,6 +209,26 @@ dependencies {<span class="mdui-text-color-deep-orange">
       </div>
       <div class="mdui-dialog-actions">
         <button class="mdui-btn mdui-color-theme-accent" onclick="copyManuallyClose()">Close</button>
+      </div>
+    </div>
+    <div class="mdui-dialog" id="dialog-donate-redirect">
+      <div class="mdui-dialog-content">
+        Donation order created. Redirecting to payment gateway....
+      </div>
+    </div>
+    <div class="mdui-dialog" id="dialog-donate-success">
+      <div class="mdui-dialog-content">
+        Donation success! Refreshing...
+      </div>
+    </div>
+    <div class="mdui-dialog" id="dialog-donate-qrcode">
+      <div class="mdui-dialog-content">
+        <div class="mdui-dialog-title" id="dialog-donate-qrcode-tips"></div>
+        <div class="mdui-valign mdui-m-b-1">
+          <div class="mdui-center" id="qrcode">
+            <canvas width="256" height="256"></canvas>
+          </div>
+        </div>
       </div>
     </div>
     <script src="js/mdui.min.js"></script>

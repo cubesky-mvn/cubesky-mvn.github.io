@@ -305,6 +305,7 @@ const gradle_repo = `maven {
   url 'https://cubesky-mvn.github.io'
 }`
 var $$ = mdui.JQ
+const extstarsAppId = '26'
 var copyDialog = new mdui.Dialog('#copy-dialog', { history: false });
 document.getElementById('copy-dialog').addEventListener('open.mdui.dialog', function () {
   $$('#manual-copy')[0].style.height = '80%'
@@ -413,7 +414,7 @@ params_donate_list.append('limit', 300)
 params_donate_list.append('order_type', 1)
 axios.post('https://accounts.extstars.com/api/v2/donation/pull', params_donate_list, {
   headers: {
-    'AppId': '26',
+    'AppId': extstarsAppId,
     'Content-Type': 'application/x-www-form-urlencoded'
   }
 }).then(function(result) {
@@ -498,7 +499,43 @@ const paymap = {
   'paypal': 'PayPal'
 }
 
+var dialog_donate_redirect = new mdui.Dialog('#dialog-donate-redirect', { 
+  overlay: true,
+  history: false,
+  modal: true,
+  closeOnEsc: false,
+  closeOnCancel: false,
+  closeOnConfirm: false
+})
+var dialog_donate_qrcode = new mdui.Dialog('#dialog-donate-qrcode', { 
+  overlay: true,
+  history: false,
+  modal: true,
+  closeOnEsc: false,
+  closeOnCancel: false,
+  closeOnConfirm: false
+})
+var dialog_donate_success = new mdui.Dialog('#dialog-donate-success', { 
+  overlay: true,
+  history: false,
+  modal: true,
+  closeOnEsc: false,
+  closeOnCancel: false,
+  closeOnConfirm: false
+})
+window.fixdialogissue = function() {
+	window.dispatchEvent(new Event('resize'))
+}
+$$('#dialog-donate-redirect').on('opened.mdui.dialog', window.fixdialogissue)
+$$('#dialog-donate-qrcode').on('opened.mdui.dialog', window.fixdialogissue)
+$$('#dialog-donate-success').on('opened.mdui.dialog', window.fixdialogissue)
+$$('#copy-dialog').on('opened.mdui.dialog', window.fixdialogissue)
+
 function donate() {
+  document.getElementById('donate_name').disabled = true
+  document.getElementById('donate_amount').disabled = true
+  document.getElementById('donate_method').disabled = true
+  document.getElementById('donate_btn').disabled = true
   const params = new URLSearchParams()
   params.append('device_id', 'web')
   params.append('user_name', document.getElementById('donate_name').value)
@@ -506,29 +543,73 @@ function donate() {
   params.append('pay_method', document.getElementById('donate_method').value)
   axios.post('https://accounts.extstars.com/api/v2/donation/create', params, {
     headers: {
-      'AppId': '26',
+      'AppId': extstarsAppId,
       'Content-Type': 'application/x-www-form-urlencoded'
     }
   }).then(function(result) {
     if (result.data.code === 100) {
-      document.getElementById('donate_name').disabled = true
-      document.getElementById('donate_amount').disabled = true
-      document.getElementById('donate_method').disabled = true
-      document.getElementById('donate_btn').disabled = true
-      mdui.snackbar('Donation order create success.')
       if(result.data.data.link != '') {
+        dialog_donate_redirect.open()
         window.setTimeout(function(){ location.href = result.data.data.link }, 1800)
       } else {
-        document.getElementById('donate_qrcode').innerHTML ='<p>Please use ' + paymap[document.getElementById('donate_method').value] + ' to scan this qrcode to donate. </p><div id="qrcode"></div>'
+      	donate_order_id = result.data.data.order_id
+      	donate_order_check_token = result.data.data.order_check_token
+        dialog_donate_qrcode.open()
+        document.getElementById('dialog-donate-qrcode-tips').innerText ='Please use ' + paymap[document.getElementById('donate_method').value] + ' to scan this qrcode to donate. '
+        document.getElementById('qrcode').innerHTML = ''
         new QRCode(document.getElementById('qrcode'), result.data.data.qrcode)
+        setTimeout(window.donationOrderCheck, 5000)
       }
     } else {
       mdui.snackbar({message: 'Input Error.', buttonText: 'Dismiss'})
+      document.getElementById('donate_name').disabled = false
+      document.getElementById('donate_amount').disabled = false
+      document.getElementById('donate_method').disabled = false
+      document.getElementById('donate_btn').disabled = false
     }
   }).catch(function(error) {
-    console.log(error)
     mdui.snackbar({message: 'An error has occurred.', buttonText: 'Dismiss'})
+    document.getElementById('donate_name').disabled = false
+    document.getElementById('donate_amount').disabled = false
+    document.getElementById('donate_method').disabled = false
+    document.getElementById('donate_btn').disabled = false
   })
+}
+
+var donationOrderCheckTimes = 0
+var donate_order_id = ''
+var donate_order_check_token = ''
+window.donationOrderCheck = function() {
+  if (donationOrderCheckTimes <= 15) {
+  	const params_ocheck = new URLSearchParams()
+    params_ocheck.append('order_id', donate_order_id)
+    params_ocheck.append('order_check_token', donate_order_check_token)
+    axios.post('https://accounts.extstars.com/api/v2/order/check', params_ocheck, {
+      headers: {
+        'AppId': extstarsAppId,
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    }).then(function(result) {
+        if (result.data.code === 100) {
+          if (result.data.data.is_paid === 0) {
+          	donationOrderCheckTimes = donationOrderCheckTimes + 1
+            setTimeout(window.donationOrderCheck, 5000)
+          } else {
+            donateSuccess()
+          }
+        } else {
+          mdui.snackbar('An error occurred.')
+        }
+    }).catch(function() {
+        mdui.snackbar('An error occurred.')
+    })
+  }
+}
+
+function donateSuccess() {
+    dialog_donate_qrcode.close()
+    dialog_donate_success.open()
+    window.setTimeout(function(){ window.location.href = window.location.origin + '/?amount=' + document.getElementById('donate_amount').value }, 1800)
 }
 
 var amount = (new URL(window.location.href)).searchParams.get('amount')
