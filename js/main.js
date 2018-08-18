@@ -603,6 +603,8 @@ window.donationOrderCheck = function() {
     }).catch(function() {
         mdui.snackbar('An error occurred.')
     })
+  } else {
+    mdui.snackbar('Order status check now disabled.')
   }
 }
 
