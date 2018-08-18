@@ -519,7 +519,7 @@ function donate() {
       if(result.data.data.link != '') {
         window.setTimeout(function(){ location.href = result.data.data.link }, 1800)
       } else {
-        document.getElementById().innerHTML ='<p>Please use ' + paymap[document.getElementById('donate_method').value] + ' to scan this qrcode to donate. </p><div id="qrcode"></div>'
+        document.getElementById('donate_qrcode').innerHTML ='<p>Please use ' + paymap[document.getElementById('donate_method').value] + ' to scan this qrcode to donate. </p><div id="qrcode"></div>'
         new QRCode(document.getElementById('qrcode'), result.data.data.qrcode)
       }
     } else {
