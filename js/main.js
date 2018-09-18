@@ -200,7 +200,7 @@ const ef_template = ef.t`
           .Gradle
 `
 const ef_template_sm = ef.t`
->div.mdui-row.mdui-m-b-2
+>div.mdui-col-xs-12.mdui-col-md-6.mdui-m-b-2
   #data-type = {{scr = small}}
   >div.mdui-card
     >div.mdui-card-primary
