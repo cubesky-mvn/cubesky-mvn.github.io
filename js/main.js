@@ -196,7 +196,7 @@ const ef_template = ef.t`
       >li.mdui-menu-item
         >button.btncopy.mdui-btn.mdui-btn-block.mdui-ripple
           #data-clipboard-action = copy
-          #data-clipboard-text = implementation '{{group}}:{{name}}:{{version_select}}{{gradle_other}}'
+          #data-clipboard-text = {{depKey}} '{{group}}:{{name}}:{{version_select}}{{gradle_other}}'
           .Gradle
 `
 const ef_template_sm = ef.t`
@@ -259,7 +259,7 @@ const ef_template_sm = ef.t`
           >li.mdui-menu-item
             >button.btncopy.mdui-btn.mdui-btn-block.mdui-ripple
               #data-clipboard-action = copy
-              #data-clipboard-text = implementation '{{group}}:{{name}}:{{version_select}}{{gradle_other}}'
+              #data-clipboard-text = {{depKey}} '{{group}}:{{name}}:{{version_select}}{{gradle_other}}'
               .Gradle
 `
 const ef_template_version = ef.t`
@@ -367,7 +367,8 @@ for (var i = 0; i < dataStore.length; i++) {
       disabled: disabled,
       latest: latest,
       maven_other: maven_other,
-      gradle_other: gradle_other
+      gradle_other: gradle_other,
+      depKey: document.getElementById('depKey').value
   }
   large_library.librarylist.push(new ef_template({
     $data: listdata,
@@ -405,6 +406,14 @@ for (var i = 0; i < dataStore.length; i++) {
 }
 
 mdui.mutation()
+
+$$('#depKey').on('closed.mdui.select', function() {
+  var depKeyV = document.getElementById('depKey').value
+  for (i in large_library.librarylist) {
+    large_library.librarylist[i].$data.depKey = depKeyV
+    small_library.librarylist[i].$data.depKey = depKeyV
+  }
+})
 
 const donate_list = new ef_donate_table_template()
 donate_list.$mount({target: $$('#donate-list')[0]})
