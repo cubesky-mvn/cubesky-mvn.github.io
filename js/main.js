@@ -17,7 +17,7 @@ const dataStore = [{
     source: 'Github',
     type: 'jar',
     license: 'AGPLv3',
-    version: ['1.0', '2.0']
+    version: ['1.0', '2.0', '3.0']
 }, {
     project: 'Protocol Data Router',
     group: 'party.liyin',

@@ -3,11 +3,12 @@
   <groupId>party.liyin</groupId>
   <artifactId>gobangboard</artifactId>
   <versioning>
-    <release>2.0</release>
+    <release>3.0</release>
     <versions>
       <version>1.0</version>
       <version>2.0</version>
+      <version>3.0</version>
     </versions>
-    <lastUpdated>20171217075641</lastUpdated>
+    <lastUpdated>20180923073049</lastUpdated>
   </versioning>
 </metadata>
